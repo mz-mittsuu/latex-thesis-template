@@ -1,0 +1,23 @@
+// @file .vscode/settings.json
+// @brief Visual Studio Code settings for LaTeX Workshop extension.
+{
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        }
+    ]
+}

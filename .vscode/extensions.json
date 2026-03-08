@@ -1,0 +1,11 @@
+// @file .vscode/extensions.json
+// @brief Visual Studio Code recommended extensions for LaTeX development.
+{
+    "recommendations": [
+        "james-yu.latex-workshop",
+        "yzhang.markdown-all-in-one",
+        "ms-vscode.makefile-tools",
+        "github.vscode-github-actions",
+        "shardulm94.trailing-spaces"
+    ]
+}
