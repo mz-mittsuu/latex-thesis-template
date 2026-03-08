@@ -1,0 +1,59 @@
+% @file main.tex
+% @brief Main entry point for the Latex thesis document.
+
+\documentclass[dvipdfmx]{jsreport}
+
+% ==================================================
+% Metadata and custom style
+% ==================================================
+
+\input{metadata.tex}
+\usepackage{style/thesis}
+
+\begin{document}
+
+% ==================================================
+% Front Matter
+% - Title Page
+% - Abstract
+% - Table of Contents
+% ==================================================
+
+\input{frontmatter/titlepage.tex}
+
+\pagenumbering{roman}
+
+\input{frontmatter/abstract.tex}
+\input{frontmatter/toc.tex}
+
+% ==================================================
+% Main Matter
+% - 01: Introduction
+% - 02: Background
+% - 03: Method
+% - 04: Results
+% - 05: Conclusion
+% ==================================================
+
+\pagenumbering{arabic}
+
+\input{mainmatter/01_introduction.tex}
+\input{mainmatter/02_background.tex}
+\input{mainmatter/03_method.tex}
+\input{mainmatter/04_results.tex}
+\input{mainmatter/05_conclusion.tex}
+
+% ==================================================
+% Back Matter
+% - Acknowledgements
+% - Bibliography
+% - Appendix A: Additional Experiments
+% ==================================================
+
+\input{backmatter/acknowledgements.tex}
+\input{backmatter/bibliography.tex}
+
+\appendix
+\input{backmatter/appendix_a.tex}
+
+\end{document}
