@@ -9,12 +9,18 @@
 % ==================================================
 
 % Page Layout
-\RequirePackage[top=25truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
+\RequirePackage[
+    top=25truemm,
+    bottom=30truemm,
+    left=25truemm,
+    right=25truemm
+]{geometry}
 
-% Math
+% Mathematics
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{mathtools}
+\RequirePackage{amsthm}
 
 % Figures and Tables
 \RequirePackage{graphicx}
@@ -36,12 +42,51 @@
 % URL
 \RequirePackage{url}
 
-% Code
+% Code listing
+\RequirePackage{xcolor}
 \RequirePackage{listings}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b
+}
+
+% Algorithm
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\floatname{algorithm}{アルゴリズム}
 
 % Hyperref
 \RequirePackage{hyperref}
 \RequirePackage{pxjahyper}
+
+% ==================================================
+% Theorem Environments
+% ==================================================
+
+\renewcommand{\proofname}{証明}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{lemma}[definition]{補題}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{注意}
 
 % ==================================================
 % Table of Contents, List of Figures, and List of Tables
@@ -52,7 +97,7 @@
 \setlength{\cftchapindent}{2em}
 \setlength{\cftsecindent}{4em}
 \setlength{\cftsubsecindent}{6em}
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 \renewcommand{\cftfigpresnum}{図}
 \renewcommand{\cftfignumwidth}{4em}
@@ -89,9 +134,8 @@
 
 \newif\if@inappendix
 \@inappendixfalse
-\pretocmd{\appendix}{%
-    \@inappendixtrue
-}{}{}
+
+\pretocmd{\appendix}{\@inappendixtrue}{}{}
 
 \newcommand{\ChapterLabel}{%
     \if@inappendix
@@ -104,38 +148,61 @@
 \def\@makechapterhead#1{%
     \thispagestyle{ChapStyle}%
     \vspace*{20pt}%
-    {\parindent \z@ \raggedright \normalfont
+    {%
+        \parindent \z@
+        \raggedright
+        \normalfont
         \Huge\bfseries
-        \ifnum\c@chapter>0 \ChapterLabel\; \fi #1\par\nobreak
+        \ifnum\c@chapter>0
+            \ChapterLabel\; %
+        \fi
+        #1\par\nobreak
         \vskip 30pt
-        \gdef\chapterTitle{\ifnum\c@chapter>0 \ChapterLabel\quad \fi #1}}%
+        \gdef\chapterTitle{%
+            \ifnum\c@chapter>0
+                \ChapterLabel\quad
+            \fi
+            #1%
+        }%
+    }%
 }
 
 \def\@makeschapterhead#1{%
     \thispagestyle{ChapStyle}%
     \vspace*{20pt}%
-    {\parindent \z@ \raggedright \normalfont
-        \Huge\bfseries #1\par\nobreak
+    {%
+        \parindent \z@
+        \raggedright
+        \normalfont
+        \Huge\bfseries
+        #1\par\nobreak
         \vskip 30pt
-        \gdef\chapterTitle{#1}}%
+        \gdef\chapterTitle{#1}%
+    }%
 }
 
 \renewcommand{\chapter}{%
-    \if@openright\cleardoublepage\else\clearpage\fi
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
     \global\@topnum\z@
     \secdef\@chapter\@schapter
 }
+
 \renewcommand{\section}{%
     \@startsection{section}{1}{\z@}%
-    {3.5ex \@plus 1ex \@minus .2ex}%
-    {2.3ex \@plus .2ex}%
-    {\normalfont\Large\bfseries}%
+        {3.5ex \@plus 1ex \@minus .2ex}%
+        {2.3ex \@plus .2ex}%
+        {\normalfont\Large\bfseries}%
 }
+
 \renewcommand{\subsection}{%
     \@startsection{subsection}{2}{\z@}%
-    {3.25ex \@plus 1ex \@minus .2ex}%
-    {1.5ex \@plus .2ex}%
-    {\normalfont\large\bfseries}
+        {3.25ex \@plus 1ex \@minus .2ex}%
+        {1.5ex \@plus .2ex}%
+        {\normalfont\large\bfseries}%
 }
 
 \makeatother
@@ -149,7 +216,5 @@
     bookmarksdepth=\number\value{tocdepth},
     bookmarksnumbered=true,
     hidelinks,
-    colorlinks=false,
-    pdftitle={\PdfTitle},
-    pdfauthor={\PdfAuthor}
+    colorlinks=false
 }

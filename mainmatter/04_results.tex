@@ -1,23 +1,28 @@
 % !TeX root = ../main.tex
 % @file mainmatter/04_results.tex
-% @brief Chapter 4: 結果
+% @brief Chapter 4: 参照と引用
 
-\chapter{結果}
+\chapter{参照と引用}
+\label{chap:reference_and_citation}
 
-\section{実行結果}
-
-本テンプレートを用いることで，
-図，表，数式を含む基本的な論文PDFを生成できる．
-また目次，図目次，表目次も自動的に作成される．
-
-\section{文献引用の例}
+\section{文献引用}
+\label{sec:citation}
 
 参考文献の引用例を示す．
-\LaTeX{}は文書作成システムとして広く利用されている\cite{lamport1994latex}．
+\LaTeX{}は技術文書や学術文書の作成に広く利用されている\cite{lamport1994latex}．
+また，組版品質と長文文書管理の両面で有用であるとされている\cite{mittelbach2004latex}．
+
+\section{他章の参照}
+\label{sec:cross_reference}
+
+第\ref{chap:examples}章では，数式，図，表，箇条書き，コード表示，
+アルゴリズム，定義，定理の記述例を示した．
+例えば，式\ref{eq:matrix_example}は行列の例であり，
+図\ref{fig:example}は図の例である．
 
 \section{考察}
+\label{sec:discussion}
 
-最小サンプルの段階では，
-実際の研究内容ではなく，
-テンプレートの動作確認を目的として
-基本機能の利用例を示している．
+本テンプレートでは，論文執筆で頻出する要素を一通り確認できる．
+そのため，新規利用者は各ファイルを編集しながら，
+参照や引用の書き方を自然に把握できる．

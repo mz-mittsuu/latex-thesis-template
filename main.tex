@@ -1,14 +1,30 @@
 % @file main.tex
-% @brief Main entry point for the Latex thesis document.
+% @brief Main entry point for the LaTeX thesis document.
 
 \documentclass[dvipdfmx]{jsreport}
 
 % ==================================================
-% Metadata and custom style
+% Custom style
 % ==================================================
 
-\input{metadata.tex}
 \usepackage{style/thesis}
+
+% ==================================================
+% Metadata
+% ==================================================
+
+\newcommand{\ThesisType}{修士論文}
+\newcommand{\ThesisTitle}{論文タイトル}
+\newcommand{\AuthorName}{○○ ○○}
+\newcommand{\StudentID}{学籍番号}
+\newcommand{\Affiliation}{○○大学 大学院 ○○研究科 ○○専攻}
+\newcommand{\Advisor}{○○ ○○ 教授}
+\newcommand{\SubmissionDate}{20XX年X月X日}
+
+\hypersetup{
+    pdftitle={\ThesisTitle},
+    pdfauthor={\AuthorName}
+}
 
 \begin{document}
 
@@ -20,7 +36,7 @@
 % ==================================================
 
 \input{frontmatter/titlepage.tex}
-
+\cleardoublepage
 \pagenumbering{roman}
 
 \input{frontmatter/abstract.tex}
