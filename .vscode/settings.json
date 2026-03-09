@@ -2,6 +2,7 @@
 // @brief Visual Studio Code settings for LaTeX Workshop extension.
 {
     "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "%DIR%/build",
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk",
