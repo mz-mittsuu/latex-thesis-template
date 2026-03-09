@@ -1,0 +1,32 @@
+# @file .github/workflows/build-pdf.yml
+# @brief GitHub Actions workflow to build the LaTeX document.
+
+name: build-pdf
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Compile PDF with latexmk
+              uses: xu-cheng/latex-action@v3
+              with:
+                  root_file: main.tex
+                  args: -r .latexmkrc
+
+            - name: Upload PDF artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: thesis-pdf
+                  path: build/main.pdf
+                  if-no-files-found: error

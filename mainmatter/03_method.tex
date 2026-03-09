@@ -1,0 +1,165 @@
+% !TeX root = ../main.tex
+% @file mainmatter/03_method.tex
+% @brief Chapter 3: 記述例
+
+\chapter{記述例}
+\label{chap:examples}
+
+\section{数式}
+\label{sec:math}
+
+\subsection{基本数式}
+
+基本的な数式の例を式\ref{eq:einstein}に示す．
+
+\begin{equation}
+    E = mc^2
+    \label{eq:einstein}
+\end{equation}
+
+\subsection{複数行数式}
+
+複数行の数式は式\ref{eq:align_example}のように記述できる．
+
+\begin{align}
+    y &= ax + b \\
+    z &= cx + d
+    \label{eq:align_example}
+\end{align}
+
+\subsection{行列}
+
+行列の例を式\ref{eq:matrix_example}に示す．
+
+\begin{equation}
+    A =
+    \begin{pmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6 \\
+        7 & 8 & 9
+    \end{pmatrix}
+    \label{eq:matrix_example}
+\end{equation}
+
+\section{図}
+\label{sec:figure}
+
+図の例を図\ref{fig:example}に示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/example.pdf}
+    \caption{図の例}
+    \label{fig:example}
+\end{figure}
+
+\section{表}
+\label{sec:table}
+
+表の例を表\ref{tab:example}に示す．
+
+\begin{table}[H]
+    \centering
+    \caption{表の例}
+    \label{tab:example}
+    \begin{tabular}{lcc}
+        \toprule
+        項目 & 値A & 値B \\
+        \midrule
+        サンプル1 & 10 & 20 \\
+        サンプル2 & 15 & 30 \\
+        サンプル3 & 20 & 40 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{箇条書き}
+\label{sec:list}
+
+\subsection{記号付き箇条書き}
+
+記号付き箇条書きの例を以下に示す．
+
+\begin{itemize}
+    \item 長文文書の構造化が容易である
+    \item 数式を高品質に組版できる
+    \item 図表番号や参考文献番号を自動管理できる
+\end{itemize}
+
+\subsection{番号付き箇条書き}
+
+番号付き箇条書きの例を以下に示す．
+
+\begin{enumerate}
+    \item ソースファイルを編集する
+    \item \texttt{latexmk} でビルドする
+    \item PDF を確認する
+\end{enumerate}
+
+\section{コード表示}
+\label{sec:code}
+
+コード表示の例をソースコード\ref{lst:cpp_example}に示す．
+
+\begin{lstlisting}[language=C++, caption={C++ の例}, label={lst:cpp_example}]
+/**
+ * @file example.cpp
+ * @brief Simple hello program.
+ */
+
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, thesis template!" << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\section{アルゴリズム}
+\label{sec:algorithm}
+
+アルゴリズムの例をアルゴリズム\ref{alg:selection}に示す．
+
+\begin{algorithm}[H]
+    \caption{最大値の探索}
+    \label{alg:selection}
+    \begin{algorithmic}[1]
+        \Require 配列 $A$，要素数 $n$
+        \Ensure 最大値 $\mathrm{max}$
+        \State $\mathrm{max} \gets A[1]$
+        \For{$i \gets 2$ \textbf{to} $n$}
+            \If{$A[i] > \mathrm{max}$}
+                \State $\mathrm{max} \gets A[i]$
+            \EndIf
+        \EndFor
+        \State \Return $\mathrm{max}$
+    \end{algorithmic}
+\end{algorithm}
+
+\section{定義と定理}
+\label{sec:theorem}
+
+\begin{definition}[グラフ]
+頂点集合 $V$ と辺集合 $E$ の組 $G = (V, E)$ をグラフと呼ぶ．
+\label{def:graph}
+\end{definition}
+
+定義\ref{def:graph}に基づき，次の定理を示す．
+
+\begin{theorem}
+空でない有限集合 $V$ に対し，完全グラフでは任意の異なる 2 頂点間に辺が存在する．
+\label{thm:complete_graph}
+\end{theorem}
+
+\begin{proof}
+完全グラフの定義より，任意の異なる 2 頂点 $u, v \in V$ に対して辺 $(u, v)$ が存在する．
+したがって，任意の異なる 2 頂点間に辺が存在する．
+\end{proof}
+
+\section{参照}
+\label{sec:reference}
+
+本章では，式\ref{eq:einstein}，図\ref{fig:example}，表\ref{tab:example}，
+ソースコード\ref{lst:cpp_example}，アルゴリズム\ref{alg:selection}，
+定義\ref{def:graph}，定理\ref{thm:complete_graph}を参照できることを示した．
+また，本章は第\ref{chap:examples}章である．

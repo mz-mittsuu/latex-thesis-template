@@ -1,0 +1,76 @@
+% @file main.tex
+% @brief Main entry point for the LaTeX thesis document.
+
+\documentclass[dvipdfmx]{jsreport}
+
+% ==================================================
+% Custom style
+% ==================================================
+
+\usepackage{style/thesis}
+
+% ==================================================
+% Metadata
+% ==================================================
+
+\newcommand{\ThesisType}{修士論文}
+\newcommand{\ThesisTitle}{論文タイトル}
+\newcommand{\AuthorName}{○○ ○○}
+\newcommand{\StudentID}{学籍番号}
+\newcommand{\Affiliation}{○○大学 大学院 ○○研究科 ○○専攻}
+\newcommand{\Advisor}{○○ ○○ 教授}
+\newcommand{\SubmissionDate}{20XX年X月X日}
+
+\hypersetup{
+    pdftitle={\ThesisTitle},
+    pdfauthor={\AuthorName}
+}
+
+\begin{document}
+
+% ==================================================
+% Front Matter
+% - Title Page
+% - Abstract
+% - Table of Contents
+% ==================================================
+
+\input{frontmatter/titlepage.tex}
+\cleardoublepage
+\pagenumbering{roman}
+
+\input{frontmatter/abstract.tex}
+\clearpage
+\input{frontmatter/toc.tex}
+
+% ==================================================
+% Main Matter
+% - 01: Introduction
+% - 02: Background
+% - 03: Method
+% - 04: Results
+% - 05: Conclusion
+% ==================================================
+
+\pagenumbering{arabic}
+
+\input{mainmatter/01_introduction.tex}
+\input{mainmatter/02_background.tex}
+\input{mainmatter/03_method.tex}
+\input{mainmatter/04_results.tex}
+\input{mainmatter/05_conclusion.tex}
+
+% ==================================================
+% Back Matter
+% - Acknowledgements
+% - Bibliography
+% - Appendix A: Additional Information
+% ==================================================
+
+\input{backmatter/acknowledgements.tex}
+\input{backmatter/bibliography.tex}
+
+\appendix
+\input{backmatter/appendix_a.tex}
+
+\end{document}

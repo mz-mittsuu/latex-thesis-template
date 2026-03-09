@@ -1,0 +1,220 @@
+% @file style/thesis.sty
+% @brief Custom style definitions for the LaTeX thesis document.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style/thesis}
+
+% ==================================================
+% Packages
+% ==================================================
+
+% Page Layout
+\RequirePackage[
+    top=25truemm,
+    bottom=30truemm,
+    left=25truemm,
+    right=25truemm
+]{geometry}
+
+% Mathematics
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+
+% Figures and Tables
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+
+% Units
+\RequirePackage{siunitx}
+
+% Layout
+\RequirePackage{here}
+\RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
+\RequirePackage{etoolbox}
+
+% Citation
+\RequirePackage{cite}
+
+% URL
+\RequirePackage{url}
+
+% Code listing
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b
+}
+
+% Algorithm
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\floatname{algorithm}{アルゴリズム}
+
+% Hyperref
+\RequirePackage{hyperref}
+\RequirePackage{pxjahyper}
+
+% ==================================================
+% Theorem Environments
+% ==================================================
+
+\renewcommand{\proofname}{証明}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{lemma}[definition]{補題}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{注意}
+
+% ==================================================
+% Table of Contents, List of Figures, and List of Tables
+% ==================================================
+
+\renewcommand{\cftchapfont}{\bfseries}
+\setlength{\cftchapnumwidth}{4em}
+\setlength{\cftchapindent}{2em}
+\setlength{\cftsecindent}{4em}
+\setlength{\cftsubsecindent}{6em}
+\setcounter{tocdepth}{2}
+
+\renewcommand{\cftfigpresnum}{図}
+\renewcommand{\cftfignumwidth}{4em}
+\renewcommand{\cfttabpresnum}{表}
+\renewcommand{\cfttabnumwidth}{4em}
+
+% ==================================================
+% Header and Footer
+% ==================================================
+
+\newcommand{\chapterTitle}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\rhead{\chapterTitle}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\fancypagestyle{ChapStyle}{
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \cfoot{\thepage}
+}
+
+\pretocmd{\tableofcontents}{\thispagestyle{ChapStyle}}{}{}
+\pretocmd{\listoffigures}{\thispagestyle{ChapStyle}}{}{}
+\pretocmd{\listoftables}{\thispagestyle{ChapStyle}}{}{}
+
+% ==================================================
+% Chapter and Section
+% ==================================================
+
+\makeatletter
+
+\newif\if@inappendix
+\@inappendixfalse
+
+\pretocmd{\appendix}{\@inappendixtrue}{}{}
+
+\newcommand{\ChapterLabel}{%
+    \if@inappendix
+        付録\thechapter
+    \else
+        第\thechapter 章
+    \fi
+}
+
+\def\@makechapterhead#1{%
+    \thispagestyle{ChapStyle}%
+    \vspace*{20pt}%
+    {%
+        \parindent \z@
+        \raggedright
+        \normalfont
+        \Huge\bfseries
+        \ifnum\c@chapter>0
+            \ChapterLabel\; %
+        \fi
+        #1\par\nobreak
+        \vskip 30pt
+        \gdef\chapterTitle{%
+            \ifnum\c@chapter>0
+                \ChapterLabel\quad
+            \fi
+            #1%
+        }%
+    }%
+}
+
+\def\@makeschapterhead#1{%
+    \thispagestyle{ChapStyle}%
+    \vspace*{20pt}%
+    {%
+        \parindent \z@
+        \raggedright
+        \normalfont
+        \Huge\bfseries
+        #1\par\nobreak
+        \vskip 30pt
+        \gdef\chapterTitle{#1}%
+    }%
+}
+
+\renewcommand{\chapter}{%
+    \if@openright
+        \cleardoublepage
+    \else
+        \clearpage
+    \fi
+    \global\@topnum\z@
+    \secdef\@chapter\@schapter
+}
+
+\renewcommand{\section}{%
+    \@startsection{section}{1}{\z@}%
+        {3.5ex \@plus 1ex \@minus .2ex}%
+        {2.3ex \@plus .2ex}%
+        {\normalfont\Large\bfseries}%
+}
+
+\renewcommand{\subsection}{%
+    \@startsection{subsection}{2}{\z@}%
+        {3.25ex \@plus 1ex \@minus .2ex}%
+        {1.5ex \@plus .2ex}%
+        {\normalfont\large\bfseries}%
+}
+
+\makeatother
+
+% ==================================================
+% Hyperref
+% ==================================================
+
+\hypersetup{
+    setpagesize=false,
+    bookmarksdepth=\number\value{tocdepth},
+    bookmarksnumbered=true,
+    hidelinks,
+    colorlinks=false
+}
