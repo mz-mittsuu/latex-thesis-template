@@ -2,4 +2,4 @@
 # @brief Ignore LaTeX build artifacts.
 
 build/
-indent.log
+*.log
