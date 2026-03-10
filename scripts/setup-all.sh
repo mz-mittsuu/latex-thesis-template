@@ -2,7 +2,7 @@
 # @file scripts/setup-all.sh
 # @brief Run full setup for the recommended environment.
 
-set -e
+set -euo pipefail
 
 echo "=================================================="
 echo " LaTeX Thesis Template Full Setup"
@@ -10,7 +10,7 @@ echo "=================================================="
 
 echo
 echo "[STEP 1] Ubuntu + TeX Live setup"
-./scripts/setup-ubuntu.sh
+./scripts/setup-texlive.sh
 
 echo
 echo "[STEP 2] VSCode extension setup"

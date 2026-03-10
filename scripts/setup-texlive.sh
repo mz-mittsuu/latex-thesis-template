@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# @file scripts/setup-ubuntu.sh
-# @brief Set up the recommended LaTeX environment on WSL Ubuntu.
+# @file scripts/setup-texlive.sh
+# @brief Set up the recommended LaTeX environment on Ubuntu.
 
 set -euo pipefail
 
@@ -32,6 +32,28 @@ is_ubuntu() {
     [[ -f /etc/os-release ]] && grep -q '^ID=ubuntu' /etc/os-release
 }
 
+show_platform_note() {
+    if is_ubuntu; then
+        log "Ubuntu detected."
+    else
+        warn "Ubuntu was not detected."
+        warn "This script is primarily intended for Ubuntu."
+        warn "Continuing anyway..."
+    fi
+
+    if is_wsl; then
+        log "WSL environment detected."
+    else
+        log "Non-WSL environment detected."
+        log "This is fine as long as you are using Ubuntu."
+    fi
+
+    echo
+    log "Recommended environment policy:"
+    echo "  - Supported target: Ubuntu"
+    echo "  - Recommended for Windows users: WSL Ubuntu + VSCode"
+}
+
 main() {
     echo "=================================================="
     echo " LaTeX Thesis Template Setup (Ubuntu) "
@@ -40,15 +62,7 @@ main() {
     require_command sudo
     require_command apt
 
-    if ! is_wsl; then
-        warn "This script is intended for WSL Ubuntu."
-        warn "Continuing anyway..."
-    fi
-
-    if ! is_ubuntu; then
-        warn "This script is intended for Ubuntu."
-        warn "Continuing anyway..."
-    fi
+    show_platform_note
 
     log "Updating package lists..."
     sudo apt update

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # @file scripts/check-environment.sh
-# @brief Check whether the recommended WSL Ubuntu + TeX Live + VSCode environment is ready.
+# @brief Check whether the recommended Ubuntu + TeX Live + VSCode environment is ready.
 
 set -euo pipefail
 
@@ -33,7 +33,7 @@ check_wsl() {
     if grep -qi "microsoft" /proc/version 2>/dev/null; then
         pass "Running on WSL"
     else
-        warn "Not running on WSL"
+        pass "Not running on WSL (native Linux or other environment)"
     fi
 }
 
@@ -42,6 +42,7 @@ check_ubuntu() {
         pass "Ubuntu detected"
     else
         warn "Ubuntu not detected"
+        warn "The recommended target environment is Ubuntu"
     fi
 }
 
@@ -147,6 +148,12 @@ main() {
     echo
     echo "=== Repository Check ==="
     check_repo_files || status=1
+
+    echo
+    echo "=== Summary ==="
+    echo "Recommended environment:"
+    echo "  - Supported target: Ubuntu"
+    echo "  - Recommended for Windows users: WSL Ubuntu + VSCode"
 
     echo
     if [[ "${status}" -eq 0 ]]; then
