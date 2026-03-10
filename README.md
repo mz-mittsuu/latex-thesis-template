@@ -8,6 +8,10 @@
 学位論文作成のための **LaTeX thesis template** です。
 環境構築から PDF 生成までを簡単に行えるように、論文テンプレートとセットアップスクリプトを提供します。
 
+![demo](docs/demo.gif)
+
+### 📄 [Sample PDF](docs/sample.pdf)
+
 ## Features
 
 - 日本語論文向け（**upLaTeX + dvipdfmx**）
