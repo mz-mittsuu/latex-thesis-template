@@ -1,13 +1,27 @@
 # @file .github/workflows/build-pdf.yml
 # @brief GitHub Actions workflow to build the LaTeX document.
 
-name: build-pdf
+name: Build LaTeX PDF
 
 on:
     push:
         branches:
             - main
+        paths:
+            - '**/*.tex'
+            - '**/*.bib'
+            - 'figures/**'
+            - 'style/**'
+            - '.latexmkrc'
+            - 'Makefile'
     pull_request:
+        paths:
+            - '**/*.tex'
+            - '**/*.bib'
+            - 'figures/**'
+            - 'style/**'
+            - '.latexmkrc'
+            - 'Makefile'
     workflow_dispatch:
 
 jobs:
