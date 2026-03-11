@@ -4,13 +4,19 @@
 \documentclass[dvipdfmx]{jsreport}
 
 % ==================================================
-% Custom style
+% Packages and Styles
 % ==================================================
 
 \usepackage{style/thesis}
 
 % ==================================================
 % Metadata
+% - Thesis Type
+% - Title
+% - Author
+% - Affiliation
+% - Advisor
+% - Submission Date
 % ==================================================
 
 \newcommand{\ThesisType}{修士論文}
@@ -26,6 +32,10 @@
     pdfauthor={\AuthorName}
 }
 
+% ==================================================
+% Document
+% ==================================================
+
 \begin{document}
 
 % ==================================================
@@ -36,12 +46,15 @@
 % ==================================================
 
 \input{frontmatter/titlepage.tex}
+
 \cleardoublepage
 \pagenumbering{roman}
 
 \input{frontmatter/abstract.tex}
 \clearpage
 \input{frontmatter/toc.tex}
+
+\cleardoublepage
 
 % ==================================================
 % Main Matter
@@ -60,6 +73,8 @@
 \input{mainmatter/04_results.tex}
 \input{mainmatter/05_conclusion.tex}
 
+\cleardoublepage
+
 % ==================================================
 % Back Matter
 % - Acknowledgements
@@ -68,9 +83,12 @@
 % ==================================================
 
 \input{backmatter/acknowledgements.tex}
+\clearpage
 \input{backmatter/bibliography.tex}
 
+\cleardoublepage
 \appendix
+
 \input{backmatter/appendix_a.tex}
 
 \end{document}
